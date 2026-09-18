@@ -1,0 +1,64 @@
+import sys
+
+
+
+
+def is_profitable(revenue, cost):
+   return revenue > cost
+
+
+
+
+def suggest_investment(category):
+   if sys.version_info >= (3, 10):
+       namespace = {}
+       exec(
+           """
+def _match(category):
+   match category:
+       case \"high\" | \"electronics\" | \"gadget\":
+           return \"Reinvest\"
+       case \"medium\" | \"clothing\" | \"apparel\":
+           return \"Expand cautiously\"
+       case \"low\" | \"food\" | \"grocery\":
+           return \"Maintain current strategy\"
+       case _:
+           return \"Review category\"
+""",
+           namespace,
+       )
+       return namespace["_match"](category)
+
+
+   if category in {"high", "electronics", "gadget"}:
+       return "Reinvest"
+   if category in {"medium", "clothing", "apparel"}:
+       return "Expand cautiously"
+   if category in {"low", "food", "grocery"}:
+       return "Maintain current strategy"
+   return "Review category"
+
+
+
+
+def main():
+   revenue = float(input("What's the business revenue? "))
+   cost = float(input("What's the business cost? "))
+   category = input("What's the product category? ").strip().lower()
+
+
+   profitable = is_profitable(revenue, cost)
+   profit = revenue - cost
+
+
+   if profitable:
+       print(f"Profit: ${profit:,.2f}")
+       print(f"Suggested action: {suggest_investment(category)}")
+   else:
+       print(f"Loss: ${abs(profit):,.2f}")
+       print("Suggested action: Reduce costs or re-evaluate strategy")
+
+
+
+
+main()
