@@ -1,0 +1,14 @@
+product_name = input("What's the product name? ").strip().lower()
+
+
+if product_name.startswith("tech") or product_name in {"electronics", "gadget"}:
+   category = "High Margin"
+elif product_name in {"clothing", "apparel"}:
+   category = "Medium Margin"
+elif product_name in {"food", "grocery"}:
+   category = "Low Margin"
+else:
+   category = "Uncategorized - Review Needed"
+
+
+print(f"Product: {product_name} | Category: {category}")
