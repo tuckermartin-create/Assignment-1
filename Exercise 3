@@ -1,0 +1,22 @@
+def format_greeting(name, title="Customer"):
+   # .strip() removes leading/trailing spaces
+   cleaned_name = name.strip()
+
+
+   # If the name is empty after stripping, use a default greeting
+   if not cleaned_name:
+       return "Hello, Valued Customer!"
+
+
+   # .title() capitalizes each word, and .split() separates the full name
+   first_name = cleaned_name.title().split()[0]
+
+
+   # Return the personalized greeting with the provided title
+   return f"Hello, {first_name} ({title})!"
+
+
+
+
+full_name = input("What's your full name? ")
+print(format_greeting(full_name))
